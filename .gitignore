@@ -1,0 +1,10 @@
+study/tc/CMakeCache.txt
+study/tc/cmake_install.cmake
+study/tc/CMakeFiles/
+study/tc/Makefile
+study/tc/ospl-info.log
+study/tc/libdatamodel.so
+study/tc/gen
+study/tc/tspub
+study/tc/tssub
+study/tc/tssub_wait
