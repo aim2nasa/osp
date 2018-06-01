@@ -1,0 +1,9 @@
+CMAKE_MINIMUM_REQUIRED (VERSION 2.6)
+
+PROJECT ("HelloWorld")
+
+SET (SRC_FILES
+	HelloWorldPub.cpp
+)
+
+ADD_EXECUTABLE (helloPub ${SRC_FILES})
