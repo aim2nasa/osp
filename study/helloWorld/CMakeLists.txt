@@ -16,11 +16,13 @@ MESSAGE( "OpenSplice_INCLUDE_DIRS=" ${OpenSplice_INCLUDE_DIRS})
 
 SET (PUB_SRC_FILES
 	HelloWorldPub.cpp
+	util.cpp
 )
 MESSAGE( "PUB_SRC_FILES=" ${PUB_SRC_FILES})
 
 SET (SUB_SRC_FILES
 	HelloWorldSub.cpp
+	util.cpp
 )
 MESSAGE( "SUB_SRC_FILES=" ${SUB_SRC_FILES})
 
