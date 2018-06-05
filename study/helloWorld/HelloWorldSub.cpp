@@ -2,6 +2,7 @@
 #include <gen/HelloWorldData_DCPS.hpp>
 #include <thread>
 #include <chrono>
+#include <util.h>
 
 int main(int argc,char* argv[])
 {
@@ -19,7 +20,7 @@ int main(int argc,char* argv[])
     ws.wait();
     auto samples = dr.read();
     std::for_each(samples.begin(),samples.end(),[](const dds::sub::Sample<HelloWorldData::Msg>& s) {
-      std::cout<<"message received"<<std::endl;
+      std::cout<<"DR: "<< s.data() <<std::endl;
     });
     std::cout<<"reading done"<<std::endl;
   }
