@@ -14,15 +14,24 @@ include_directories(
 MESSAGE( "PROJECT_SOURCE_DIR=" ${PROJECT_SOURCE_DIR})
 MESSAGE( "OpenSplice_INCLUDE_DIRS=" ${OpenSplice_INCLUDE_DIRS})
 
-SET (SRC_FILES
+SET (PUB_SRC_FILES
 	HelloWorldPub.cpp
 )
-MESSAGE( "SRC_FILES=" ${SRC_FILES})
+MESSAGE( "PUB_SRC_FILES=" ${PUB_SRC_FILES})
+
+SET (SUB_SRC_FILES
+	HelloWorldSub.cpp
+)
+MESSAGE( "SUB_SRC_FILES=" ${SUB_SRC_FILES})
 
 SET (PUB_EXE helloPub)
 MESSAGE( "PUB_EXE=" ${PUB_EXE})
 
-ADD_EXECUTABLE (${PUB_EXE} ${SRC_FILES})
+SET (SUB_EXE helloSub)
+MESSAGE( "SUB_EXE=" ${SUB_EXE})
+
+ADD_EXECUTABLE (${PUB_EXE} ${PUB_SRC_FILES})
+ADD_EXECUTABLE (${SUB_EXE} ${SUB_SRC_FILES})
 
 SET(OpenSplice_DATAMODEL 
 	./gen/HelloWorldData.cpp 
@@ -50,6 +59,11 @@ ADD_DEFINITIONS (
 )
 
 target_link_libraries (helloPub
+ ${OpenSplice_LIBRARIES}
+ ${DATAMODEL}
+)
+
+target_link_libraries (helloSub
  ${OpenSplice_LIBRARIES}
  ${DATAMODEL}
 )
