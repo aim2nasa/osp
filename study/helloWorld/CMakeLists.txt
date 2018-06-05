@@ -3,6 +3,8 @@ set(CMAKE_MODULE_PATH ../cmake)
 
 PROJECT ("HelloWorld")
 
+include (osmacros)
+
 find_package (OpenSplice REQUIRED)
 
 include_directories(
@@ -39,6 +41,15 @@ MESSAGE("DATAMODEL=" ${DATAMODEL})
 
 ADD_LIBRARY (${DATAMODEL} SHARED ${OpenSplice_DATAMODEL})
 
+MESSAGE ("OpenSplice_DEFINITIONS=" ${OpenSplice_DEFINITIONS})
+MESSAGE ("DEFINITIONS=" ${DEFINITIONS})
+
+ADD_DEFINITIONS (
+ ${OpenSplice_DEFINITIONS}
+ ${DEFINITIONS}
+)
+
 target_link_libraries (helloPub
  ${OpenSplice_LIBRARIES}
+ ${DATAMODEL}
 )
