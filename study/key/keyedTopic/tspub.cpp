@@ -5,18 +5,15 @@
 #include <chrono> 
 #include "util.hpp"
 
+float
+randomValue(float avg,float delta)
+{
+  return avg + ((random()*delta)/RAND_MAX);
+}
 
 int
 main(int argc, char* argv[])
 {
-  if (argc < 2) {
-    std::cout << "USAGE:\n\t tspub <sensor-id>" << std::endl;
-    return -1;
-  }
-  int sid = atoi(argv[1]);
-  const int N = 100;
-
-
   dds::domain::DomainParticipant dp(0);
   dds::topic::Topic<tutorial::TempSensorType> topic(dp, "TTempSensor");
   dds::pub::Publisher pub(dp);
@@ -26,23 +23,21 @@ main(int argc, char* argv[])
   const float avgH = 0.6;
   const float deltaT = 5;
   const float deltaH = 0.15;
+
   // Initialize random number generation with a seed
   srandom(clock());
     
-  // Write some temperature randomly changing around a set point
-  float temp = avgT + ((random()*deltaT)/RAND_MAX);
-  float hum  = avgH + ((random()*deltaH)/RAND_MAX);
+  while(1) {
+    tutorial::TempSensorType sensor1(1,randomValue(avgT,deltaT),randomValue(avgH,deltaH),tutorial::CELSIUS);
+    tutorial::TempSensorType sensor2(2,randomValue(avgT,deltaT),randomValue(avgH,deltaH),tutorial::CELSIUS);
 
-  tutorial::TempSensorType sensor( sid, temp, hum, tutorial::CELSIUS );
+    dw.write(sensor1); 
+    std::cout << "DW << " << sensor1 << std::endl;
 
-  for (unsigned int i = 0; i < N; ++i) {
-    dw.write(sensor);
-    std::cout << "DW << " << sensor << std::endl;
+    dw.write(sensor2); 
+    std::cout << "DW << " << sensor2 << std::endl;
+
     std::this_thread::sleep_for(std::chrono::seconds(1));
-    temp = avgT + ((random()*deltaT)/RAND_MAX);
-    sensor.temp(temp); 
-    hum = avgH + ((random()*deltaH)/RAND_MAX);
-    sensor.hum(hum);
   }
   return 0;
 }

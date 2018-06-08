@@ -7,12 +7,10 @@ include (osmacros)
 
 find_package (OpenSplice REQUIRED)
 
-
 include_directories(
   ${PROJECT_SOURCE_DIR}
   ${OpenSplice_INCLUDE_DIRS}
 )
-
 
 set (idls TempControl.idl)
 
@@ -38,19 +36,13 @@ set (SUB_SOURCES
  tssub.cpp
  util.cpp
 )
-set (SUB_WAIT_SOURCES
- tssub_wait.cpp
- util.cpp
-)
 
 set (PUB_EXE tspub)
 set (SUB_EXE tssub)
-set (SUB_WAIT_EXE tssub_wait)
 set (DATAMODEL datamodel)
 
 add_executable (${PUB_EXE} ${PUB_SOURCES})
 add_executable (${SUB_EXE} ${SUB_SOURCES})
-add_executable (${SUB_WAIT_EXE} ${SUB_WAIT_SOURCES})
 add_library (${DATAMODEL} SHARED ${OpenSplice_DATAMODEL})
 
 add_definitions (
@@ -69,11 +61,6 @@ target_link_libraries (${PUB_EXE}
 )
 
 target_link_libraries (${SUB_EXE}
- ${OpenSplice_LIBRARIES}
- ${DATAMODEL}
-)
-
-target_link_libraries (${SUB_WAIT_EXE}
  ${OpenSplice_LIBRARIES}
  ${DATAMODEL}
 )
