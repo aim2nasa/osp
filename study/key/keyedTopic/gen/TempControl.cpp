@@ -4,7 +4,7 @@
 //  
 //  File name: TempControl.cpp
 //  Source: ../TempControl.idl
-//  Generated: Fri Jun  8 13:35:43 2018
+//  Generated: Fri Jun  8 13:38:58 2018
 //  OpenSplice 6.7.180404OSS
 //  
 //******************************************************************
