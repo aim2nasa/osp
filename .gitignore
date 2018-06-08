@@ -8,3 +8,12 @@ study/key/keyedTopic/gen
 study/key/keyedTopic/tspub
 study/key/keyedTopic/tssub
 study/key/keyedTopic/tssub_wait
+study/key/keylessTopic/CMakeCache.txt
+study/key/keylessTopic/cmake_install.cmake
+study/key/keylessTopic/CMakeFiles/
+study/key/keylessTopic/Makefile
+study/key/keylessTopic/ospl-info.log
+study/key/keylessTopic/libdatamodel.so
+study/key/keylessTopic/gen
+study/key/keylessTopic/tspub
+study/key/keylessTopic/tssub
