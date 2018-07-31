@@ -21,7 +21,7 @@ $(TARGET) : $(OBJS)
 	@echo $@:$^...
 	$(CXX) -o $@ $^
 
-%.o : %.cpp idl
+%.o : %.cpp
 	@echo $@:$^...
 	$(CXX) -c $< $(INCLUDES)
 
