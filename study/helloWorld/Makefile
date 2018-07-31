@@ -2,7 +2,6 @@ CXX = g++
 
 TARGET = HelloWorldPub
 OBJS = HelloWorldPub.o
-SRCS =$(OBJS:.o=.c)
 
 all : $(TARGET)
 	@echo $@:$(TARGET)...
