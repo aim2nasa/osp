@@ -5,6 +5,10 @@ OBJS = HelloWorldPub.o
 IDL = HelloWorldData.idl
 IDLGD = gen
 
+OSPL_CPP_INCLUDES = -I$(OSPL_HOME)/include/dcps/C++
+OSPL_INCLUDES = $(OSPL_CPP_INCLUDES)/SACPP $(OSPL_CPP_INCLUDES)/isocpp
+INCLUDES = -I$(shell pwd)/$(IDLGD) $(OSPL_INCLUDES)
+
 all : $(TARGET)
 	@echo $@:$^...
 
@@ -19,7 +23,7 @@ $(TARGET) : $(OBJS)
 
 %.o : %.cpp idl
 	@echo $@:$^...
-	$(CXX) -c $<
+	$(CXX) -c $< $(INCLUDES)
 
 idl : $(IDL)
 	rm -rf $(IDLGD)
