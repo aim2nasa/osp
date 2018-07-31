@@ -4,14 +4,14 @@ TARGET = HelloWorldPub
 OBJS = HelloWorldPub.o
 
 all : $(TARGET)
-	@echo $@:$(TARGET)...
+	@echo $@:$^...
 
 clean:
 	@echo $@...
 	rm -rf *.o *.gch $(TARGET)
 
 $(TARGET) : $(OBJS)
-	@echo $@:$(OBJS)...
+	@echo $@:$^...
 	$(CXX) -o $@ $^
 
 %.o : %.cpp
