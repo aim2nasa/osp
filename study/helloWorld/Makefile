@@ -15,4 +15,5 @@ $(TARGET) : $(OBJS)
 	$(CXX) -o $@ $^
 
 %.o : %.cpp
+	@echo $@:$^...
 	$(CXX) -c $<
