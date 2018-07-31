@@ -7,6 +7,10 @@ SRCS =$(OBJS:.o=.c)
 all : $(TARGET)
 	@echo $@:$(TARGET)...
 
+clean:
+	@echo $@...
+	rm -rf *.o *.gch $(TARGET)
+
 $(TARGET) : $(OBJS)
 	@echo $@:$(OBJS)...
 	$(CXX) -o $@ $^
@@ -15,7 +19,3 @@ $(TARGET) : $(OBJS)
 	$(CXX) -c $<
 
 HelloWorldPub.o : HelloWorldPub.cpp
-
-clean:
-	@echo $@...
-	rm -rf *.o *.gch $(TARGET)
