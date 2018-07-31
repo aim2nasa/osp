@@ -11,7 +11,7 @@ $(TARGET) : $(OBJS)
 	@echo $@:$(OBJS)...
 	$(CXX) -o $@ $^
 
-.c.o:
+%.o : %.c
 	$(CXX) -c $<
 
 HelloWorldPub.o : HelloWorldPub.cpp
