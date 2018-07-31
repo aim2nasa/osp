@@ -17,7 +17,7 @@ $(TARGET) : $(OBJS)
 	@echo $@:$^...
 	$(CXX) -o $@ $^
 
-%.o : %.cpp
+%.o : %.cpp idl
 	@echo $@:$^...
 	$(CXX) -c $<
 
