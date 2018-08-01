@@ -8,6 +8,8 @@ int main(int argc,char* argv[])
     return -1;
   }
 
+  dds::domain::DomainParticipant dp(0);
+
   std::cout<<"pub end"<<std::endl;
   return 0;
 }

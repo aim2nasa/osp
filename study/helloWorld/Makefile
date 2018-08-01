@@ -8,6 +8,8 @@ IDLGD = gen
 OSPL_CPP_INCLUDES = -I$(OSPL_HOME)/include/dcps/C++
 INCLUDES = -I$(shell pwd)/$(IDLGD) $(OSPL_CPP_INCLUDES)/SACPP $(OSPL_CPP_INCLUDES)/isocpp 
 
+LIBS = -L$(OSPL_HOME)/lib -ldcpsisocpp
+
 all : $(TARGET)
 	@echo $@:$^...
 
@@ -18,7 +20,7 @@ clean:
 
 $(TARGET) : $(OBJS)
 	@echo $@:$^...
-	$(CXX) -o $@ $^
+	$(CXX) -o $@ $^ $(LIBS)
 
 %.o : $(IDL) %.cpp
 	@echo $@:$^...
