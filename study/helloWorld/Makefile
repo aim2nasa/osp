@@ -20,9 +20,9 @@ $(TARGET) : $(OBJS)
 	@echo $@:$^...
 	$(CXX) -o $@ $^
 
-%.o : %.cpp
+%.o : $(IDL) %.cpp
 	@echo $@:$^...
-	$(CXX) -c $< $(INCLUDES)
+	$(CXX) -c $(word 2,$^) $(INCLUDES)
 
 idl : $(IDL)
 	rm -rf $(IDLGD)
