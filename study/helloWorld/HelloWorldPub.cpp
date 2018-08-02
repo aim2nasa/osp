@@ -13,6 +13,8 @@ int main(int argc,char* argv[])
   dds::pub::Publisher pub(dp);
   dds::pub::DataWriter<HelloWorldData::Msg> dw(pub,topic);
 
+  HelloWorldData::Msg message(1,argv[1]);
+
   std::cout<<"pub end"<<std::endl;
   return 0;
 }
