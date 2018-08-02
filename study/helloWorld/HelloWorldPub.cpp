@@ -11,6 +11,7 @@ int main(int argc,char* argv[])
   dds::domain::DomainParticipant dp(0);
   dds::topic::Topic<HelloWorldData::Msg> topic(dp,"Message");
   dds::pub::Publisher pub(dp);
+  dds::pub::DataWriter<HelloWorldData::Msg> dw(pub,topic);
 
   std::cout<<"pub end"<<std::endl;
   return 0;
