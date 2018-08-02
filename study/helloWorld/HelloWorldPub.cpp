@@ -1,5 +1,6 @@
 #include <iostream>
 #include <gen/HelloWorldData_DCPS.hpp>
+#include <util.h>
 
 int main(int argc,char* argv[])
 {
@@ -15,6 +16,7 @@ int main(int argc,char* argv[])
 
   HelloWorldData::Msg message(1,argv[1]);
   dw.write(message);
+  std::cout<<"DW: "<<message<<std::endl;
 
   std::cout<<"pub end"<<std::endl;
   return 0;
