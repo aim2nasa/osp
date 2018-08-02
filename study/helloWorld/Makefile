@@ -2,7 +2,8 @@ CXX = g++
 CXXFLAGS = -g -O2 -Wall -Wextra -std=c++11
 
 TARGET = HelloWorldPub
-OBJS = HelloWorldPub.o
+SRCS = HelloWorldPub.cpp
+OBJS = ${SRCS:.cpp=.o}
 IDL = HelloWorldData.idl
 IDLGD = gen
 
