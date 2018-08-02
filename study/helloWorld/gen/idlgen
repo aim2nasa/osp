@@ -1,4 +1,0 @@
-#!/bin/bash
-
-IDL="HelloWorldData.idl"
-idlpp -l isocpp ../${IDL}

@@ -14,7 +14,7 @@ all : pre-build main-build
 
 pre-build:
 	@echo PRE
-	@cd gen;./idlgen;make
+	@cd gen;make
 
 post-build:
 	@echo POST
@@ -33,3 +33,6 @@ $(TARGET) : $(OBJS)
 %.o : $(IDL) %.cpp
 	@echo $@:$^...
 	$(CXX) -c $(word 2,$^) $(INCLUDES)
+
+idl:
+	idlpp -l isocpp $(IDL) -d $(IDLGD)
