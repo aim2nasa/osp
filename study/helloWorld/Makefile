@@ -15,7 +15,6 @@ all : $(TARGET)
 
 clean:
 	@echo $@...
-	rm -rf $(IDLGD)
 	rm -rf *.o *.gch $(TARGET)
 
 $(TARGET) : $(OBJS)
@@ -27,6 +26,4 @@ $(TARGET) : $(OBJS)
 	$(CXX) -c $(word 2,$^) $(INCLUDES)
 
 idl : $(IDL)
-	rm -rf $(IDLGD)
-	mkdir $(IDLGD)
 	idlpp -l isocpp $< -d $(IDLGD)
