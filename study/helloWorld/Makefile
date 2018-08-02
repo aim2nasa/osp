@@ -10,12 +10,16 @@ INCLUDES = -I$(shell pwd)/$(IDLGD) $(OSPL_CPP_INCLUDES)/SACPP $(OSPL_CPP_INCLUDE
 
 LIBS = -L$(OSPL_HOME)/lib -ldcpsisocpp
 
-all : $(TARGET)
-	@echo $@:$^...
+all : prepare $(TARGET)
+	@echo $(TARGET)...
+
+prepare: 
+	@cd gen;./idlgen;make
 
 clean:
 	@echo $@...
-	rm -rf *.o *.gch $(TARGET)
+	@cd gen;make clean
+	rm -rf *.o *.gch *.so $(TARGET)
 
 $(TARGET) : $(OBJS)
 	@echo $@:$^...
@@ -24,6 +28,3 @@ $(TARGET) : $(OBJS)
 %.o : $(IDL) %.cpp
 	@echo $@:$^...
 	$(CXX) -c $(word 2,$^) $(INCLUDES)
-
-idl : $(IDL)
-	idlpp -l isocpp $< -d $(IDLGD)
