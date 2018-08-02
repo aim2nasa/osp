@@ -9,8 +9,15 @@ OBJS = ${SRCS:.cpp=.o}
 OSPL_CPP_INCLUDES = -I$(OSPL_HOME)/include/dcps/C++
 INCLUDES = $(OSPL_CPP_INCLUDES)/SACPP $(OSPL_CPP_INCLUDES)/isocpp
 
-all : $(TARGET)
-	@echo $@:$^...
+all : pre-build main-build
+
+pre-build:
+	@echo PRE
+
+post-build:
+	@echo POST
+
+main-build: $(TARGET)
 
 $(TARGET) : $(OBJS)
 	@echo $@:$^...

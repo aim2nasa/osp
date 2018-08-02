@@ -10,11 +10,16 @@ INCLUDES = -I$(shell pwd)/$(IDLGD) $(OSPL_CPP_INCLUDES)/SACPP $(OSPL_CPP_INCLUDE
 
 LIBS = -L$(OSPL_HOME)/lib -ldcpsisocpp
 
-all : prepare $(TARGET)
-	@echo $(TARGET)...
+all : pre-build main-build
 
-prepare: 
+pre-build:
+	@echo PRE
 	@cd gen;./idlgen;make
+
+post-build:
+	@echo POST
+
+main-build: $(TARGET)
 
 clean:
 	@echo $@...
