@@ -15,6 +15,7 @@ all : $(TARGET)
 $(TARGET) : $(OBJS)
 	@echo $@:$^...
 	$(CXX) -shared -Wl,-soname,$@ -o $@ $(OBJS) $(LIBS)
+	@mv $(TARGET) ..
 
 %.o : %.cpp
 	@echo $@:$^...
