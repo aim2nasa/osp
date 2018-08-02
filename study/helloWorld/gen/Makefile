@@ -23,3 +23,4 @@ $(TARGET) : $(OBJS)
 clean:
 	@echo $@...
 	rm -rf *.o $(TARGET)
+	rm -rf *.cpp *.h *.hpp
