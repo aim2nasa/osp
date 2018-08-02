@@ -1,4 +1,5 @@
 CXX = g++
+CXXFLAGS = -g -O2 -Wall -Wextra -std=c++11
 
 TARGET = HelloWorldPub
 OBJS = HelloWorldPub.o
@@ -32,7 +33,7 @@ $(TARGET) : $(OBJS)
 
 %.o : $(IDL) %.cpp
 	@echo $@:$^...
-	$(CXX) -c $(word 2,$^) $(INCLUDES)
+	$(CXX) -c $(word 2,$^) $(CXXFLAGS) $(INCLUDES)
 
 idl:
 	idlpp -l isocpp $(IDL) -d $(IDLGD)
