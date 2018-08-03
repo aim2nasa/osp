@@ -13,6 +13,10 @@ int main(int argc,char* argv[])
   ws += rc;
 
   while(true) {
+    std::cout<<"waiting..."<<std::endl;
+    ws.wait();
+    auto samples = dr.read();
+    std::cout<<"reading done"<<std::endl;
   }
 
   std::cout<<"sub end"<<std::endl;
