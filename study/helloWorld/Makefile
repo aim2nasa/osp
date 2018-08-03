@@ -13,7 +13,7 @@ IDL = HelloWorldData.idl
 IDLGD = gen
 
 OSPL_CPP_INCLUDES = -I$(OSPL_HOME)/include/dcps/C++
-INCLUDES = -I$(shell pwd)/$(IDLGD) $(OSPL_CPP_INCLUDES)/SACPP $(OSPL_CPP_INCLUDES)/isocpp 
+INCLUDES = $(OSPL_CPP_INCLUDES)/SACPP $(OSPL_CPP_INCLUDES)/isocpp 
 
 LIBS = -L$(OSPL_HOME)/lib -ldcpsisocpp -L$(shell pwd) -lHelloWorldData
 
