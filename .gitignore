@@ -18,9 +18,9 @@ study/key/keylessTopic/libdatamodel.so
 study/key/keylessTopic/gen
 study/key/keylessTopic/tspub
 study/key/keylessTopic/tssub
-study/helloWorld/HelloWorldPub
+study/helloWorld/pub
 study/helloWorld/gen/*.h
 study/helloWorld/gen/*.hpp
 study/helloWorld/gen/*.cpp
-study/helloWorld/HelloWorldSub
+study/helloWorld/sub
 study/helloWorld/libHelloWorldData*

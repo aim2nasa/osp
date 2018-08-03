@@ -1,11 +1,11 @@
 CXX = g++
 CXXFLAGS = -g -O2 -Wall -Wextra -std=c++11
 
-TARGET_PUB = HelloWorldPub
+TARGET_PUB = pub
 SRCS_PUB = HelloWorldPub.cpp util.cpp
 OBJS_PUB = ${SRCS_PUB:.cpp=.o}
 
-TARGET_SUB = HelloWorldSub
+TARGET_SUB = sub
 SRCS_SUB = HelloWorldSub.cpp util.cpp
 OBJS_SUB = ${SRCS_SUB:.cpp=.o}
 
@@ -31,7 +31,7 @@ main-build: $(TARGET_PUB) $(TARGET_SUB)
 clean:
 	@echo $@...
 	@cd gen;make clean
-	rm -rf *.o *.gch *.so $(TARGET)
+	rm -rf *.o *.gch *.so *.log $(TARGET_PUB) $(TARGET_SUB)
 
 $(TARGET_PUB) : $(OBJS_PUB)
 	@echo $@:$^...
