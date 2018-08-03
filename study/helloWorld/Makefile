@@ -1,9 +1,14 @@
 CXX = g++
 CXXFLAGS = -g -O2 -Wall -Wextra -std=c++11
 
-TARGET = HelloWorldPub
-SRCS = HelloWorldPub.cpp util.cpp
-OBJS = ${SRCS:.cpp=.o}
+TARGET_PUB = HelloWorldPub
+SRCS_PUB = HelloWorldPub.cpp util.cpp
+OBJS_PUB = ${SRCS_PUB:.cpp=.o}
+
+TARGET_SUB = HelloWorldSub
+SRCS_SUB = HelloWorldSub.cpp util.cpp
+OBJS_SUB = ${SRCS_SUB:.cpp=.o}
+
 IDL = HelloWorldData.idl
 IDLGD = gen
 
@@ -21,14 +26,18 @@ pre-build:
 post-build:
 	@echo POST
 
-main-build: $(TARGET)
+main-build: $(TARGET_PUB) $(TARGET_SUB)
 
 clean:
 	@echo $@...
 	@cd gen;make clean
 	rm -rf *.o *.gch *.so $(TARGET)
 
-$(TARGET) : $(OBJS)
+$(TARGET_PUB) : $(OBJS_PUB)
+	@echo $@:$^...
+	$(CXX) -o $@ $^ $(LIBS)
+
+$(TARGET_SUB) : $(OBJS_SUB)
 	@echo $@:$^...
 	$(CXX) -o $@ $^ $(LIBS)
 
