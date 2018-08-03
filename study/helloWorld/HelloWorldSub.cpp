@@ -8,6 +8,13 @@ int main(int argc,char* argv[])
   dds::sub::Subscriber sub(dp);
   dds::sub::DataReader<HelloWorldData::Msg> dr(sub,topic);
 
+  dds::core::cond::WaitSet ws;
+  dds::sub::cond::ReadCondition rc(dr,dds::sub::status::DataState::new_data());
+  ws += rc;
+
+  while(true) {
+  }
+
   std::cout<<"sub end"<<std::endl;
   return 0;
 }
