@@ -1,5 +1,6 @@
 #include <iostream>
 #include <gen/HelloWorldData_DCPS.hpp>
+#include <util.h>
 
 int main(int argc,char* argv[])
 {
@@ -16,6 +17,9 @@ int main(int argc,char* argv[])
     std::cout<<"waiting..."<<std::endl;
     ws.wait();
     auto samples = dr.read();
+    std::for_each(samples.begin(),samples.end(),[](const dds::sub::Sample<HelloWorldData::Msg>& s) {
+      std::cout<<"DR: "<< s.data() <<std::endl;
+    });
     std::cout<<"reading done"<<std::endl;
   }
 
