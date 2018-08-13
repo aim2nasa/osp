@@ -1,5 +1,6 @@
 #include <iostream>
 #include <gen/bcast_DCPS.hpp>
+#include <util.h>
 
 int main(int argc,char* argv[])
 {
@@ -18,7 +19,7 @@ int main(int argc,char* argv[])
 
 		auto samples = dr.read();
 		std::for_each(samples.begin(),samples.end(),[](const dds::sub::Sample<bcast::Data>& s) {
-			std::cout<<"DR: "<< s.data().id() <<std::endl;
+			std::cout<<"DR: "<< s.data() <<std::endl;
 		});
 	}
 
