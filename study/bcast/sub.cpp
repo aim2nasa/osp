@@ -8,6 +8,20 @@ int main(int argc,char* argv[])
 	dds::sub::Subscriber sub(dp);
 	dds::sub::DataReader<bcast::Data> dr(sub,topic);
 
+	dds::core::cond::WaitSet ws;
+	dds::sub::cond::ReadCondition rc(dr,dds::sub::status::DataState::new_data());
+	ws += rc;
+
+	while(true){
+		std::cout<<"waiting..."<<std::endl;
+		ws.wait();
+
+		auto samples = dr.read();
+		std::for_each(samples.begin(),samples.end(),[](const dds::sub::Sample<bcast::Data>& s) {
+			std::cout<<"DR: "<< s.data().id() <<std::endl;
+		});
+	}
+
 	std::cout<<"sub end"<<std::endl;
 	return 0;
 }
