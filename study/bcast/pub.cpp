@@ -13,6 +13,15 @@ int main(int argc,char* argv[])
 	dds::pub::Publisher pub(dp);
 	dds::pub::DataWriter<bcast::Data> dw(pub,topic);
 
+	unsigned long payloadSize = 4096;
+	bcast::Data sample;
+	sample.id(0);
+	for(unsigned long i=0;i<payloadSize;i++) sample.payload().push_back(0x0);
+	std::cout<<"sample payload size="<<sample.payload().size()<<std::endl;
+
+	dw.write(sample);
+	std::cout<<"DW done"<<std::endl;
+
 	std::cout<<"pub end"<<std::endl;
 	return 0;
 }
