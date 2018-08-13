@@ -9,6 +9,9 @@ int main(int argc,char* argv[])
 	}
 
 	dds::domain::DomainParticipant dp(0);
+	dds::topic::Topic<bcast::Data> topic(dp,"bCast");
+	dds::pub::Publisher pub(dp);
+	dds::pub::DataWriter<bcast::Data> dw(pub,topic);
 
 	std::cout<<"pub end"<<std::endl;
 	return 0;
