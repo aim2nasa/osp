@@ -6,5 +6,5 @@ module bcast
 		string message;
 		sequence<octet> payload;
 	};
-	#pragma keylist Data
+	#pragma keylist Data id
 };
