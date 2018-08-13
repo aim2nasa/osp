@@ -1,0 +1,10 @@
+module bcast
+{
+	struct Data
+	{
+		unsigned long long id;
+		string message;
+		sequence<octet> payload;
+	};
+	#pragma keylist Data
+};
