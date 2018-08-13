@@ -1,12 +1,13 @@
 CXX = g++
 CXXFLAGS = -g -O2 -Wall -Wextra -std=c++11
 
+COMMON_SRC = util.cpp
 TARGET_PUB = pub
-SRCS_PUB = pub.cpp
+SRCS_PUB = pub.cpp ${COMMON_SRC}
 OBJS_PUB = ${SRCS_PUB:.cpp=.o}
 
 TARGET_SUB = sub
-SRCS_SUB = sub.cpp
+SRCS_SUB = sub.cpp ${COMMON_SRC}
 OBJS_SUB = ${SRCS_SUB:.cpp=.o}
 
 IDL = bcast.idl

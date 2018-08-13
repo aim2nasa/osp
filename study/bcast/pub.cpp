@@ -1,5 +1,6 @@
 #include <iostream>
 #include <gen/bcast_DCPS.hpp>
+#include <util.h>
 
 int main(int argc,char* argv[])
 {
@@ -20,7 +21,7 @@ int main(int argc,char* argv[])
 	std::cout<<"sample payload size="<<sample.payload().size()<<std::endl;
 
 	dw.write(sample);
-	std::cout<<"DW done"<<std::endl;
+	std::cout<<"DW:"<<sample<<" done"<<std::endl;
 
 	std::cout<<"pub end"<<std::endl;
 	return 0;
