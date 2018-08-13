@@ -23,7 +23,7 @@ int main(int argc,char* argv[])
 	unsigned long long id=0;
 	std::string msg;
 	while(true){
-		std::cout<<"(q to quit) message=?";
+		std::cout<<"(q to quit) message=? ";
 		std::cin>>msg;
 
 		if("q"==msg) break;
