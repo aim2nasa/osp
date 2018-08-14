@@ -16,7 +16,7 @@ IDLGD = gen
 OSPL_CPP_INCLUDES = -I$(OSPL_HOME)/include/dcps/C++
 INCLUDES = $(OSPL_CPP_INCLUDES)/SACPP $(OSPL_CPP_INCLUDES)/isocpp 
 
-LIBS = -L$(OSPL_HOME)/lib -ldcpsisocpp -L$(shell pwd) -lbcast
+LIBS = -L$(OSPL_HOME)/lib -ldcpsisocpp -lddskernel -L$(shell pwd) -lbcast
 
 all : pre-build main-build
 
