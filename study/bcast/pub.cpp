@@ -10,8 +10,8 @@ void exitHandler(int s)
 
 int main(int argc,char* argv[])
 {
-	if(argc<2) {
-		std::cout<<"usage: pub <payloadSize>"<<std::endl;
+	if(argc<3) {
+		std::cout<<"usage: pub <payloadSize> <loop>"<<std::endl;
 		return -1;
 	}
 
@@ -25,6 +25,8 @@ int main(int argc,char* argv[])
 	bcast::Data sample;
 	for(unsigned long i=0;i<payloadSize;i++) sample.payload().push_back(0x0);
 	std::cout<<"sample payload size="<<sample.payload().size()<<std::endl;
+	unsigned long loop = atoi(argv[2]);
+	std::cout<<"loop="<<loop<<std::endl;
 
 	struct sigaction sigIntHandler;
 	sigIntHandler.sa_handler = exitHandler;
@@ -33,17 +35,12 @@ int main(int argc,char* argv[])
 	sigaction(SIGINT,&sigIntHandler,NULL);
 
 	unsigned long long id=0;
-	std::string msg;
-	while(true){
-		std::cout<<"(q to quit) message=? ";
-		std::cin>>msg;
-
-		if("q"==msg) break;
-
+	std::string msg="test";
+	for(long i=0;i<loop;i++){
 		sample.id(id++);
 		sample.message(msg);
 		dw.write(sample);
-		std::cout<<"DW:"<<sample<<" done"<<std::endl;
+		std::cout<<".";
 	}
 
 	std::cout<<"pub end"<<std::endl;
