@@ -16,9 +16,13 @@ int main(int argc,char* argv[])
 	}
 
 	dds::domain::DomainParticipant dp(0);
-	dds::topic::Topic<bcast::Data> topic(dp,"bCast");
+	dds::topic::qos::TopicQos topicQos = dp.default_topic_qos()
+		<< dds::core::policy::Durability::Transient()
+		<< dds::core::policy::Reliability::Reliable();
+	dds::topic::Topic<bcast::Data> topic(dp,"bCast",topicQos);
 	dds::pub::Publisher pub(dp);
-	dds::pub::DataWriter<bcast::Data> dw(pub,topic);
+	dds::pub::qos::DataWriterQos dwQos = topic.qos();
+	dds::pub::DataWriter<bcast::Data> dw(pub,topic,dwQos);
 
 	unsigned long payloadSize = atoi(argv[1]);
 	std::cout<<"given payloadSize="<<payloadSize<<std::endl;
