@@ -1,6 +1,7 @@
 #include <iostream>
 #include <gen/bcast_DCPS.hpp>
 #include <util.h>
+#include <thread>
 
 void exitHandler(int s)
 {
@@ -16,12 +17,12 @@ int main(int argc,char* argv[])
 	}
 
 	dds::domain::DomainParticipant dp(0);
-	dds::topic::qos::TopicQos topicQos = dp.default_topic_qos()
-		<< dds::core::policy::Durability::Transient()
-		<< dds::core::policy::Reliability::Reliable();
-	dds::topic::Topic<bcast::Data> topic(dp,"bCast",topicQos);
+	dds::topic::Topic<bcast::Data> topic(dp,"bCast");
 	dds::pub::Publisher pub(dp);
 	dds::pub::qos::DataWriterQos dwQos = topic.qos();
+	dwQos	<< dds::core::policy::Reliability::Reliable(dds::core::Duration(100,0))
+			<< dds::core::policy::History::KeepAll()
+			<< dds::core::policy::ResourceLimits(1000);
 	dds::pub::DataWriter<bcast::Data> dw(pub,topic,dwQos);
 
 	unsigned long payloadSize = atoi(argv[1]);
@@ -44,10 +45,12 @@ int main(int argc,char* argv[])
 		sample.id(id++);
 		sample.message(msg);
 		dw.write(sample);
+		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 		std::cout<<".";
 	}
 	std::cout<<std::endl<<loop<<" samples sent"<<std::endl;
 
+	std::this_thread::sleep_for(std::chrono::seconds(600));
 	std::cout<<"pub end"<<std::endl;
 	return 0;
 }

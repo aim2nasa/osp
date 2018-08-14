@@ -5,12 +5,12 @@
 int main(int argc,char* argv[])
 {
 	dds::domain::DomainParticipant dp(0);
-	dds::topic::qos::TopicQos topicQos = dp.default_topic_qos()
-		<< dds::core::policy::Durability::Transient()
-		<< dds::core::policy::Reliability::Reliable();
-	dds::topic::Topic<bcast::Data> topic(dp,"bCast",topicQos);
+	dds::topic::Topic<bcast::Data> topic(dp,"bCast");
 	dds::sub::Subscriber sub(dp);
 	dds::sub::qos::DataReaderQos drQos = topic.qos();
+	drQos	<< dds::core::policy::Reliability::Reliable(dds::core::Duration(100,0))
+			<< dds::core::policy::History::KeepAll() 
+			<< dds::core::policy::ResourceLimits(1000);
 	dds::sub::DataReader<bcast::Data> dr(sub,topic,drQos);
 
 	dds::core::cond::WaitSet ws;
