@@ -42,6 +42,7 @@ int main(int argc,char* argv[])
 		dw.write(sample);
 		std::cout<<".";
 	}
+	std::cout<<std::endl<<loop<<" samples sent"<<std::endl;
 
 	std::cout<<"pub end"<<std::endl;
 	return 0;
