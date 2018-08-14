@@ -29,3 +29,6 @@ study/dds-tut/key/keylessTopic/gen/
 study/dds-tut/key/keylessTopic/libdatamodel.so
 study/dds-tut/key/keylessTopic/tspub
 study/dds-tut/key/keylessTopic/tssub
+study/bcast/libbcast.so
+study/bcast/pub
+study/bcast/sub
