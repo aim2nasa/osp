@@ -17,7 +17,7 @@ int main(int argc,char* argv[])
 		std::cout<<"waiting..."<<std::endl;
 		ws.wait();
 
-		auto samples = dr.read();
+		auto samples = dr.take();
 		std::for_each(samples.begin(),samples.end(),[](const dds::sub::Sample<bcast::Data>& s) {
 			std::cout<<"DR: "<< s.data() <<std::endl;
 		});
