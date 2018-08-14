@@ -32,3 +32,6 @@ study/dds-tut/key/keylessTopic/tssub
 study/bcast/libbcast.so
 study/bcast/pub
 study/bcast/sub
+study/bcast/gen/*.cpp
+study/bcast/gen/*.h
+study/bcast/gen/*.hpp
