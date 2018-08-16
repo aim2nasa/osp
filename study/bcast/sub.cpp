@@ -42,4 +42,5 @@ int main(int argc,char* argv[])
 	std::cout<<std::endl<<"Last sample id="<<prevId<<std::endl;
 
 	std::cout<<"sub end"<<std::endl;
+	return 0;
 }
