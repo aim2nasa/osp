@@ -18,7 +18,9 @@ int main(int argc,char* argv[])
 	ws += rc;
 
 	static unsigned long long prevId=0;
-	while(true){
+	static bool bRun = true;
+	while(bRun){
+		std::cout<<"-"<<std::flush;
 		ws.wait();
 
 		auto samples = dr.take();
@@ -30,9 +32,14 @@ int main(int argc,char* argv[])
 				std::cout<<"x("<<prevId<<","<<id<<")"<<std::flush;
 			}
 			prevId = id;
+			if(s.data().message()=="end") {
+				std::cout<<"E"<<std::flush;
+			   bRun = false;
+				return;
+			}
 		});
 	}
+	std::cout<<std::endl<<"Last sample id="<<prevId<<std::endl;
 
 	std::cout<<"sub end"<<std::endl;
-	return 0;
 }
