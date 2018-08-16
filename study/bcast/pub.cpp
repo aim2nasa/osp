@@ -46,7 +46,7 @@ int main(int argc,char* argv[])
 		sample.message(msg);
 		dw.write(sample);
 		std::this_thread::sleep_for(std::chrono::milliseconds(5));
-		std::cout<<".";
+		std::cout<<"."<<std::flush;
 	}
 	std::cout<<std::endl<<loop<<" samples sent"<<std::endl;
 
