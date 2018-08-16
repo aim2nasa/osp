@@ -42,10 +42,10 @@ int main(int argc,char* argv[])
 	unsigned long long id=0;
 	std::string msg="test";
 	for(unsigned long i=0;i<loop;i++){
-		sample.id(id++);
+		sample.id(++id);
 		sample.message(msg);
 		dw.write(sample);
-		std::this_thread::sleep_for(std::chrono::milliseconds(1));
+		std::this_thread::sleep_for(std::chrono::milliseconds(5));
 		std::cout<<".";
 	}
 	std::cout<<std::endl<<loop<<" samples sent"<<std::endl;

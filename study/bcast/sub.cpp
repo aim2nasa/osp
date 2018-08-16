@@ -17,13 +17,19 @@ int main(int argc,char* argv[])
 	dds::sub::cond::ReadCondition rc(dr,dds::sub::status::DataState::new_data());
 	ws += rc;
 
+	static unsigned long long prevId=0;
 	while(true){
-		std::cout<<"waiting..."<<std::endl;
 		ws.wait();
 
 		auto samples = dr.take();
 		std::for_each(samples.begin(),samples.end(),[](const dds::sub::Sample<bcast::Data>& s) {
-			std::cout<<"DR: "<< s.data() <<std::endl;
+			unsigned long long id = s.data().id();
+			if(id == (prevId+1)) {
+				std::cout<<"."<<std::flush;
+			}else{
+				std::cout<<"x("<<prevId<<","<<id<<")"<<std::flush;
+			}
+			prevId = id;
 		});
 	}
 
