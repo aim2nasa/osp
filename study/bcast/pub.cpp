@@ -11,8 +11,8 @@ void exitHandler(int s)
 
 int main(int argc,char* argv[])
 {
-	if(argc<3) {
-		std::cout<<"usage: pub <payloadSize> <loop>"<<std::endl;
+	if(argc<4) {
+		std::cout<<"usage: pub <payloadSize> <loop> <sleep in msec>"<<std::endl;
 		return -1;
 	}
 
@@ -32,6 +32,8 @@ int main(int argc,char* argv[])
 	std::cout<<"sample payload size="<<sample.payload().size()<<std::endl;
 	unsigned long loop = atoi(argv[2]);
 	std::cout<<"loop="<<loop<<std::endl;
+	unsigned int sleep = atoi(argv[3]);
+	std::cout<<"sleep="<<sleep<<"milliseconds"<<std::endl;
 
 	struct sigaction sigIntHandler;
 	sigIntHandler.sa_handler = exitHandler;
@@ -45,7 +47,7 @@ int main(int argc,char* argv[])
 		sample.id(++id);
 		sample.message(msg);
 		dw.write(sample);
-		std::this_thread::sleep_for(std::chrono::milliseconds(5));
+		std::this_thread::sleep_for(std::chrono::milliseconds(sleep));
 		std::cout<<"."<<std::flush;
 	}
 	std::cout<<std::endl<<loop<<" samples sent"<<std::endl;
