@@ -45,14 +45,13 @@ int main(int argc,char* argv[])
 	std::string msg="test";
 	for(unsigned long i=0;i<loop;i++){
 		sample.id(++id);
-		sample.message(msg);
+		if(i==(loop-1)) sample.message("end");
 		dw.write(sample);
 		std::this_thread::sleep_for(std::chrono::milliseconds(sleep));
 		std::cout<<"."<<std::flush;
 	}
 	std::cout<<std::endl<<loop<<" samples sent"<<std::endl;
 
-	std::this_thread::sleep_for(std::chrono::seconds(600));
 	std::cout<<"pub end"<<std::endl;
 	return 0;
 }
