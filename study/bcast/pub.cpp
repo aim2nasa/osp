@@ -44,6 +44,7 @@ int main(int argc,char* argv[])
 	unsigned long long id=0;
 	std::string msg="test";
 	for(unsigned long i=0;i<loop;i++){
+		std::cout<<"-"<<std::flush;
 		sample.id(++id);
 		if(i==(loop-1)) sample.message("end");
 		dw.write(sample);
