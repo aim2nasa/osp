@@ -19,6 +19,7 @@ int main(int argc,char* argv[])
 
 	static unsigned long long prevId=0;
 	static bool bRun = true;
+	static unsigned long long errCount=0;
 	while(bRun){
 		std::cout<<"-"<<std::flush;
 		ws.wait();
@@ -29,6 +30,7 @@ int main(int argc,char* argv[])
 			if(id == (prevId+1)) {
 				std::cout<<"."<<std::flush;
 			}else{
+				errCount++;
 				std::cout<<"x("<<prevId<<","<<id<<")"<<std::flush;
 			}
 			prevId = id;
@@ -40,6 +42,7 @@ int main(int argc,char* argv[])
 		});
 	}
 	std::cout<<std::endl<<"Last sample id="<<prevId<<std::endl;
+	std::cout<<"Error count="<<errCount<<std::endl;
 
 	std::cout<<"sub end"<<std::endl;
 	return 0;
